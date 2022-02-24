@@ -1,0 +1,16 @@
+defaults:
+  - optimizer: ranger
+  - dataloader: base
+  - models: base
+  - dataset
+  - trainer
+
+  # thanks to https://hydra.cc/docs/next/configure_hydra/logging
+  # at this point in time we do not want hydras custom logging
+  - override hydra/job_logging: custom
+
+# and we also do not want hydra's cwd mess
+hydra:
+  output_subdir: ~
+  run:
+    dir: .

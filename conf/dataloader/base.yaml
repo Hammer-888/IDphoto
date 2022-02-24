@@ -1,0 +1,13 @@
+
+train:
+    _target_: torch.utils.data.DataLoader
+    pin_memory: False
+    drop_last: True
+    shuffle: True
+
+val:
+    _target_: torch.utils.data.DataLoader
+    pin_memory: False
+    drop_last: False
+    shuffle: False
+    batch_size: 1

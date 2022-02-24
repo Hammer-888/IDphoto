@@ -1,0 +1,105 @@
+
+dataset:
+  val_split: 0.1
+  train_samples_per_epoch: 24576
+
+  mean: [ .5, .5, .5 ]
+  std: [ .5, .5, .5 ]
+
+  train:
+    _target_: lib.data.dataset.SegmentationDataset
+
+    configurations:
+      - identifier: supervisely
+        images_path: ./dataset/supervisely/images/
+        masks_path: ./dataset/supervisely/masks/
+        detailed_masks: False
+        rgba_masks: False
+        weight: .5
+        transforms:
+          train:
+            - _target_: lib.data.transforms.RandomRotation
+              degrees: 30
+            - _target_: lib.data.transforms.RandomResizedCrop
+              size: 448
+              scale: [ .8, 1.2 ]
+            - _target_: lib.data.transforms.RandomHorizontalFlip
+              flip_prob: .5
+            - _target_: lib.data.transforms.RandomGrayscale
+              p: .25
+          val:
+            - _target_: lib.data.transforms.Resize
+              size: 448
+              keep_aspect_ratio: True
+
+      - identifier: refined-supervisely
+        images_path: ./dataset/supervisely/images/
+        masks_path: ./dataset/supervisely/refined-masks/
+        detailed_masks: True
+        rgba_masks: False
+        weight: .33
+        transforms:
+          train:
+            - _target_: lib.data.transforms.RandomRotation
+              degrees: 30
+            - _target_: lib.data.transforms.RandomResizedCrop
+              size: 448
+              scale: [ .8, 1.2 ]
+            - _target_: lib.data.transforms.RandomHorizontalFlip
+              flip_prob: .5
+            - _target_: lib.data.transforms.RandomGrayscale
+              p: .25
+          val:
+            - _target_: lib.data.transforms.Resize
+              size: 448
+              keep_aspect_ratio: True
+
+
+
+      - identifier: refined-aisegment
+        images_path: ./dataset/aisegment/images/
+        masks_path: ./dataset/aisegment/refined-masks/
+        detailed_masks: True
+        rgba_masks: False
+        weight: .33
+        transforms:
+          train:
+            - _target_: lib.data.transforms.RandomPerspective
+              p: .3
+            - _target_: lib.data.transforms.RandomRotation
+              degrees: 30
+            - _target_: lib.data.transforms.RandomResizedCrop
+              size: 448
+              scale: [ .8, 1.2 ]
+            - _target_: lib.data.transforms.RandomHorizontalFlip
+              flip_prob: .5
+            - _target_: lib.data.transforms.RandomGrayscale
+              p: .25
+          val:
+            - _target_: lib.data.transforms.Resize
+              size: 448
+              keep_aspect_ratio: True
+
+      - identifier: aisegment
+        images_path: ./dataset/aisegment/images/
+        masks_path: ./dataset/aisegment/masks/
+        detailed_masks: False
+        rgba_masks: True
+        weight: .33
+        transforms:
+          train:
+            - _target_: lib.data.transforms.RandomPerspective
+              p: .3
+            - _target_: lib.data.transforms.RandomRotation
+              degrees: 30
+            - _target_: lib.data.transforms.RandomResizedCrop
+              size: 448
+              scale: [ .8, 1.2 ]
+            - _target_: lib.data.transforms.RandomHorizontalFlip
+              flip_prob: .5
+            - _target_: lib.data.transforms.RandomGrayscale
+              p: .25
+          val:
+            - _target_: lib.data.transforms.Resize
+              size: 448
+              keep_aspect_ratio: True

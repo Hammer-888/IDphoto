@@ -1,0 +1,29 @@
+channels:
+  - pytorch
+  - anaconda
+  - conda-forge
+  - defaults
+
+dependencies:
+  - pytorch
+  - torchvision
+  - torchaudio
+  - cudatoolkit=11.1
+  - pip
+  - pynvml
+  - tensorboard=2.4.1
+  - pillow
+  - numpy
+  - pyyaml
+  - pandas
+  - scipy
+  - streamlit
+  -
+
+  - pip:
+      - torchsummary
+      - future
+      - psutil
+      - torch_optimizer
+      - hydra-core=1.1.0.dev3
+      - PyMatting

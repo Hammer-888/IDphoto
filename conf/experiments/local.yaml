@@ -1,0 +1,23 @@
+# @package _global_
+
+defaults:
+  - override /optimizer: ranger
+
+trainer:
+  seed: 999
+  # from_u2net_checkpoint: True
+  # start_epoch: 0
+  # resume: ./checkpoints/checkpoint.pth
+
+dataloader:
+  train:
+    pin_memory: True
+    num_workers: 8
+    persistent_workers: True
+    batch_size: 18
+    shuffle: False
+
+  val:
+    pin_memory: True
+    num_workers: 2
+    batch_size: 32

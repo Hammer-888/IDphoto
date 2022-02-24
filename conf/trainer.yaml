@@ -1,0 +1,17 @@
+
+trainer:
+  print_torch_setup: False
+  start_epoch: 0
+  epochs: 1500
+  print_freq: 10
+  resume: ~
+  output_dir: ./experiments
+  seed: ~
+  device: cuda
+  image_size: 128
+  weights_only: False
+  dry_run: False
+  anomaly_detection: False
+  from_u2net_checkpoint: False
+  amp: True
+  channels_last: True
